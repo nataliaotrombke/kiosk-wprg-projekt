@@ -11,7 +11,7 @@
   <?php
   for ($i = 0; $i < 1_000; $i++) {
     ?>
-      <li>Element #<?php echo $i?></li>
+      <li>Element #<?= $i ?></li>
     <?php
   }
   ?>
