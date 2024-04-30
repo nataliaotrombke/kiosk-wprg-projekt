@@ -9,7 +9,7 @@
 
 <ol>
   <?php
-  for ($i = 0; $i < 1_000; $i++) {
+  for ($i = 0; $i < 1_00; $i++) {
     ?>
       <li>Element #<?= $i ?></li>
     <?php

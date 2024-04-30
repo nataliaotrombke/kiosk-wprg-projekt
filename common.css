@@ -1,0 +1,44 @@
+:root {
+    --primary-green: rgb(0, 144, 54);
+}
+
+.icon {
+    background-image: url("/assets/ico-sheet.040408e34068.svg");
+    width: 32px;
+    height: 32px;
+    display: block;
+
+    &.bag {
+        background-position-x: -534.466px;
+        background-position-y: -320.679px;
+        background-size: 748.252px 605.728px;
+    }
+
+    &.cutlery {
+        background-position-x: -463.204px;
+        background-position-y: -320.679px;
+        background-size: 748.252px 605.728px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "max-regular";
+    src: url("/assets/font-normal.woff");
+}
+
+@font-face {
+    font-family: "max-bold";
+    src: url("/assets/font-bold.woff");
+}
+
+body {
+    font-family: "max-regular", sans-serif;
+}
+
+
+
+

@@ -1,0 +1,116 @@
+@import "/common.css";
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    .type-selector {
+        width: 100vw;
+        display: grid;
+        grid-template-rows: 78vh 33px 33px;
+
+        .hero {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            grid-row: 1 / span 2;
+            grid-column: 1;
+            animation: slideshow 20s infinite;
+            background-image: var(--current);
+        }
+
+        .type-buttons {
+            display: flex;
+            justify-content: center;
+            grid-row: 2 / span 2;
+            grid-column: 1;
+            gap: 3px;
+
+            a {
+                background-color: var(--primary-green);
+                height: 66px;
+                width: 220px;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px;
+                font-family: "max-bold", sans-serif;
+                text-decoration: none;
+
+
+                &:first-of-type {
+                    border-top-left-radius: 16px;
+                    border-bottom-left-radius: 16px;
+                }
+
+                &:last-of-type {
+                    border-top-right-radius: 16px;
+                    border-bottom-right-radius: 16px;
+                }
+            }
+
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        color: dimgray;
+        flex-grow: 1;
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 16px;
+            .languages {
+                display: flex;
+                gap: 10px;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 1px dimgray solid;
+                }
+
+                .active {
+                    color: black;
+                }
+
+                .vertical-line {
+                    display: block;
+                    width: 1px;
+                    height: 20px;
+                    background-color: dimgray;
+                }
+            }
+
+            .supported-cards {
+
+                img {
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes slideshow {
+    0%, 100% {
+        --current: url("/assets/salad-group.png");
+    }
+
+    33% {
+        --current: url("/assets/big-classic.png");
+    }
+
+    66% {
+        --current: url("/assets/premium-shake.png");
+    }
+}
