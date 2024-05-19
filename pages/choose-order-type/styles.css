@@ -103,14 +103,14 @@ body {
 
 @keyframes slideshow {
     0%, 100% {
-        --current: url("/assets/salad-group.png");
+        --current: url("/assets/hero/salad-group.png");
     }
 
     33% {
-        --current: url("/assets/big-classic.png");
+        --current: url("/assets/hero/big-classic.png");
     }
 
     66% {
-        --current: url("/assets/premium-shake.png");
+        --current: url("/assets/hero/premium-shake.png");
     }
 }

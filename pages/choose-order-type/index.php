@@ -19,14 +19,14 @@
     <p>Zamów i zapłać tutaj &mdash; odbierz w restauracji.</p>
     <section class="row">
         <article class="languages">
-            <img src="/assets/icon-poland.svg" alt="flag of poland">
+            <img src="/assets/icons/icon-poland.svg" alt="flag of poland">
             <span class="vertical-line"></span>
             <span class="active">Polski</span>
             <span>English</span>
         </article>
         <article class="supported-cards">
-            <img src="/assets/visa-electron.svg" alt="visa">
-            <img src="/assets/mastercard-logo.svg" alt="mastercard">
+            <img src="/assets/icons/visa-electron.svg" alt="visa">
+            <img src="/assets/icons/mastercard-logo.svg" alt="mastercard">
         </article>
     </section>
 </footer>
