@@ -7,17 +7,32 @@
     width: 32px;
     height: 32px;
     display: block;
+    background-size: 748.252px 605.728px;
+
+    &.big {
+        width: 150px;
+        height: 150px;
+        background-size: 3000px;
+    }
 
     &.bag {
         background-position-x: -534.466px;
         background-position-y: -320.679px;
-        background-size: 748.252px 605.728px;
     }
 
     &.cutlery {
         background-position-x: -463.204px;
         background-position-y: -320.679px;
-        background-size: 748.252px 605.728px;
+    }
+
+    &.start {
+        background-position-x: -363.204px;
+        background-position-y: -270.679px;
+
+        &.big {
+            background-position-x: -1852.204px;
+            background-position-y: -1438.379px;
+        }
     }
 }
 

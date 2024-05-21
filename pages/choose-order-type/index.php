@@ -11,8 +11,8 @@
 <section class="type-selector">
     <section class="hero"></section>
     <main class="type-buttons">
-        <a href="#">Zjedz na miejscu<i class="icon cutlery"></i></a>
-        <a href="#">Na wynos<i class="icon bag"></i></a>
+        <a href="/pages/choose-category/">Zjedz na miejscu<i class="icon cutlery"></i></a>
+        <a href="/pages/choose-category/">Na wynos<i class="icon bag"></i></a>
     </main>
 </section>
 <footer>

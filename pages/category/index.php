@@ -12,7 +12,6 @@
 $category_id = $_GET["id"];
 
 
-// tu
 $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=nataliaotrombke;password=nataliaotrombke");
 $statement_category = $pdo->query("select name from data.category where category_id = $category_id;");
 $result_category = $statement_category -> fetch();
@@ -22,7 +21,7 @@ echo <<<EOD
 EOD;
 
 
-// tu
+
 $statement_subcategory = $pdo ->query("select name, description, subcategory_id from data.subcategory where category_id = $category_id;");
 $results_subcategory = $statement_subcategory -> fetchAll();
 foreach ($results_subcategory as $result_subcategory) {

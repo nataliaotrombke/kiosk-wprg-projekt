@@ -103,14 +103,17 @@ body {
 
 @keyframes slideshow {
     0%, 100% {
+        --current: url("/assets/hero/spicy-avocado.png");
+    }
+
+    25% {
+        --current: url("/assets/hero/premium_shake.png");
+    }
+
+    50% {
         --current: url("/assets/hero/salad-group.png");
     }
-
-    33% {
-        --current: url("/assets/hero/big-classic.png");
-    }
-
-    66% {
-        --current: url("/assets/hero/premium-shake.png");
+    75% {
+        --current: url("/assets/hero/burger_rywala.png");
     }
 }
