@@ -3,17 +3,29 @@
 html{
     color-scheme: light;
 }
+body {
+    display: grid;
+    grid-template: auto 1fr auto / 100vw;
+    height: 100vh;
+    margin: 0;
+
+    main {
+        /*height: 100%;*/
+        overflow: scroll;
+    }
+
+}
+
 .image {
     width: 100%;
-    height: 100%;
+    height: 28vh;
 }
 .categories-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 10px;
     row-gap: 10px;
-    margin: 50px;
-
+    margin: 50px 50px 0 50px;
 
     img {
         object-fit: cover;
@@ -30,8 +42,8 @@ html{
     overflow: auto;
 
     .start-button, img {
-        width: 240px;
-        height: 240px;
+        width: 10vw;
+        height: 10vw;
         flex-shrink: 0;
         display: grid;
         justify-content: center;
@@ -45,7 +57,44 @@ html{
     background-color: #f2e8df;
     color: black;
     text-align: center;
-    font-size: 30px;
-    padding: 20px;
+    font-size: 20px;
+    padding: 10px;
+}
 
+.allergy {
+    font-size: 10px;
+}
+
+.icons_categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 50px;
+    margin: 0 50px 50px 50px;
+
+    .frame-around-screen, .frame-around-coupon, .frame-around-close{
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+    }
+
+    .frame-around-close {
+        display: grid;
+        border: solid red;
+        width: 109px;
+        place-items: center;
+    }
+
+}
+
+footer {
+    display: grid;
+    grid-template-columns: auto auto ;
+    .left-side {
+        margin: 16px 0 0 50px;
+    }
+    .icons_categories {
+        margin: 16px 50px 0 0 ;
+    }
 }

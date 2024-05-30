@@ -1,8 +1,20 @@
 html {
-    color-scheme: dark light;
+    color-scheme: light;
 }
 
 .products {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+    margin: 50px;
 }
+
+.return-to-menu {
+    text-decoration: none;
+    border: solid rgb(0, 144, 54);
+    color: black;
+    /*padding: 20px;*/
+    margin: 50px;
+}
+

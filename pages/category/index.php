@@ -12,11 +12,13 @@
 $category_id = $_GET["id"];
 
 
-$pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=nataliaotrombke;password=nataliaotrombke");
+$pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
 $statement_category = $pdo->query("select name from data.category where category_id = $category_id;");
 $result_category = $statement_category -> fetch();
 $name_category = $result_category["name"];
 echo <<<EOD
+    <a class="icon 
+    return-to-menu" href="/pages/choose-category/">Menu</a>
     <h1>$name_category</h1>
 EOD;
 
@@ -30,7 +32,6 @@ foreach ($results_subcategory as $result_subcategory) {
   $subcategory_id = $result_subcategory["subcategory_id"];
 
   echo <<<EOD
-
     <h3>$name_subcategory</h3>
     <p>$description_subcategory</p>
     <section class="products">

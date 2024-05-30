@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4e636fda-7212-4402-a1bc-9dd44f98597f" name="grindcore" url="http://natalia.budziszm.pl">
+        <fileTransfer rootFolder="/var/www/natalia" accessType="SFTP" host="natalia@natalia.budziszm.pl" port="22" sshConfigId="9be98327-324e-43e9-9501-983581514be7" sshConfig="natalia@natalia@natalia.budziszm.pl:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -10,14 +10,14 @@
     background-size: 748.252px 605.728px;
 
     &.big {
-        width: 150px;
-        height: 150px;
-        background-size: 3000px;
+        width: 50px;
+        height: 50px;
+        /*background-size: 300px;*/
     }
 
     &.bag {
-        background-position-x: -534.466px;
-        background-position-y: -320.679px;
+        background-position-x: -2033.204px;
+        background-position-y: -1534.379px;
     }
 
     &.cutlery {
@@ -30,9 +30,29 @@
         background-position-y: -270.679px;
 
         &.big {
-            background-position-x: -1852.204px;
-            background-position-y: -1438.379px;
+            background-position-x: -1952.204px;
+            background-position-y: -1566.379px;
         }
+    }
+    &.scan-of-a-coupon {
+
+        background-position-x: -317.204px;
+        background-position-y: -470.679px;
+    }
+
+    &.screen {
+        background-position-x: -674.204px;
+        background-position-y: -144.679px;
+    }
+
+    &.cancel {
+        background-position-x: -459.204px;
+        background-position-y: -38.679px;
+    }
+
+    &.return-to-menu {
+        background-position-x: -459.204px;
+        background-position-y: -38.679px;
     }
 }
 
