@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choose order type</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose order type</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
   <?php
   session_start();
-  $_SESSION['basket']??= [];
+  $_SESSION['basket'] ??= [];
   //isset -> określa, czy zmienna jest zadeklarowana i jest różna od null
   if (isset($_GET['add'])) {
 //    echo $_GET['add'];
     array_push($_SESSION['basket'], $_GET['add']);
   }
-  if(isset($_GET['remove'])){
+  if (isset($_GET['remove'])) {
     $index = array_search($_GET['remove'], $_SESSION['basket']);
-    if ($index !== false){
+    if ($index !== false) {
       array_splice($_SESSION['basket'], $index, 1);
     }
   }
@@ -56,16 +56,15 @@ $category_id = $_GET["id"];
 
 $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
 $statement_category = $pdo->query("select name from data.category where category_id = $category_id;");
-$result_category = $statement_category -> fetch();
+$result_category = $statement_category->fetch();
 $name_category = $result_category["name"];
 echo <<<EOD
     <h1 class="name-category">$name_category</h1>
 EOD;
 
 
-
-$statement_subcategory = $pdo ->query("select name, description, subcategory_id from data.subcategory where category_id = $category_id;");
-$results_subcategory = $statement_subcategory -> fetchAll();
+$statement_subcategory = $pdo->query("select name, description, subcategory_id from data.subcategory where category_id = $category_id;");
+$results_subcategory = $statement_subcategory->fetchAll();
 foreach ($results_subcategory as $result_subcategory) {
   $name_subcategory = $result_subcategory["name"];
   $description_subcategory = $result_subcategory["description"];
@@ -103,7 +102,7 @@ left join data.subcategory_to_product on data.product.product_id = subcategory_t
                 <i class="icon pen"></i>
                     Zmień
                 </button>
-             <a class="add-button" href="?id=0&add=$product_id">
+             <a class="add-button" href="?id=$category_id&add=$product_id">
              <i class="icon plus"></i>
                  Dodaj
                 </a>
@@ -113,33 +112,33 @@ left join data.subcategory_to_product on data.product.product_id = subcategory_t
 EOD;
 
   }
-  echo" </section>";
+  echo " </section>";
 
 }
 ?>
 <footer>
-       <article class="icons-categories">
-           <a class="frame-around-coupon" href="">
-               <p>
-                   <i class="icon scan-of-a-coupon"></i>
-                   Skanuj
-               </p>
-           </a>
-           <a class="frame-around-screen" href="">
-               <p>
-                   <i class="icon screen"></i>
-                   Ekran
-               </p>
-           </a>
-           <a class="frame-around-close" href="/pages/choose-order-type/index.php">
-               <p>
-                   <i class="icon cancel"></i>
-                   Anuluj
-               </p>
-           </a>
-       </article>
+    <article class="icons-categories">
+        <a class="frame-around-coupon" href="">
+            <p>
+                <i class="icon scan-of-a-coupon"></i>
+                Skanuj
+            </p>
+        </a>
+        <a class="frame-around-screen" href="">
+            <p>
+                <i class="icon screen"></i>
+                Ekran
+            </p>
+        </a>
+        <a class="frame-around-close" href="/pages/choose-order-type/index.php">
+            <p>
+                <i class="icon cancel"></i>
+                Anuluj
+            </p>
+        </a>
+    </article>
     <p class="allergy">Masz alergię lub nietolerancję pokarmową? Poinformuj pracownika przy kasie.</p>
-    <section class="wysuwany-koszyk">
+    <article class="wysuwany-koszyk">
         <details open>
             <summary>
                 <article class="cos">
@@ -147,24 +146,44 @@ EOD;
                     Moje zamówienie
                 </article>
             </summary>
-            <section class="basket" >
+            <article class="basket">
+                <section class="left-side-basket">
 
-<?php
-foreach ($_SESSION['basket'] as $basket) {
-    echo $basket."<br>";
-}
-?>
-                <img src="/assets/burgery/big-cassic-bacon.png" alt="/assets/burgery/big-cassic-bacon.png">
-                <p>nazwa</p>
-                <p>cena</p>
-                <a href="#">Do zapłaty  <p>cena</p> </a>
-            </section>
+                  <?php
+                  $total = 0;
+                  foreach ($_SESSION['basket'] as $id_product_in_basket) {
+                    $statement_id_product_in_basket = $pdo->query( "select product_id, name, image_src, price, currency, description from data.product where product_id=$id_product_in_basket");
+                    $results_id_product_in_basket = $statement_id_product_in_basket->fetch();
+                    $name_product = $results_id_product_in_basket["name"];
+                    $price_product = $results_id_product_in_basket["price"];
+                    $image_src_product = $results_id_product_in_basket["image_src"];
+                    $product_id = $results_id_product_in_basket["product_id"];
+                    $total += $price_product;
+                    echo <<<EOD
+                    <img src="$image_src_product" alt="">
+                    <p>$name_product</p>
+                    <p>$price_product</p>
+                    <a class="delete"  href="?id=$category_id&remove=$product_id">
+                      <i class="icon delete"></i>
+                    </a>
+                    EOD;
+                  }
+
+                  echo <<<EOD
+                </section>
+                <section class="right-side-basket">
+                <a href="#">Do zapłaty <p>$total PLN</p>
+                </a>
+                </section>
+                EOD;
+                  ?>
+            </article>
             <section>
                 <p>Łączna suma</p>
                 <p>W tym VAT 8%</p>
             </section>
         </details>
-    </section>
+    </article>
 </footer>
 </body>
 </html>
