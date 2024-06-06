@@ -7,6 +7,48 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<header>
+  <?php
+  session_start();
+  $_SESSION['basket']??= [];
+  //isset -> określa, czy zmienna jest zadeklarowana i jest różna od null
+  if (isset($_GET['add'])) {
+//    echo $_GET['add'];
+    array_push($_SESSION['basket'], $_GET['add']);
+  }
+  if(isset($_GET['remove'])){
+    $index = array_search($_GET['remove'], $_SESSION['basket']);
+    if ($index !== false){
+      array_splice($_SESSION['basket'], $index, 1);
+    }
+  }
+
+  $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+  $statement = $pdo->query("select category_id, name, image_src from data.category");
+
+  $results = $statement->fetchAll();
+
+  ?>
+    <img class="image" src="/assets/hero/nowy_nowoczesny_cezar_czy_azjatycki_smak.png" alt="">
+    <section class="categories-scrollable">
+        <a class="start-button" href="/pages/choose-category/">
+            <i class="icon big start"></i>
+            Start
+        </a>
+
+      <?php
+      foreach ($results as $result) {
+        $id = $result["category_id"];
+        $name = $result["name"];
+        $image = $result["image_src"];
+
+        echo <<<EOD
+          <a href="/pages/category/?id=$id"><img src="$image" alt="$name"></a>
+      EOD;
+      }
+      ?>
+    </section>
+</header>
 <?php
 //$_GET zmienna w php która trzyma w pamięci wszystko linku po znaku "?" w prawo
 $category_id = $_GET["id"];
@@ -17,9 +59,7 @@ $statement_category = $pdo->query("select name from data.category where category
 $result_category = $statement_category -> fetch();
 $name_category = $result_category["name"];
 echo <<<EOD
-    <a class="icon 
-    return-to-menu" href="/pages/choose-category/">Menu</a>
-    <h1>$name_category</h1>
+    <h1 class="name-category">$name_category</h1>
 EOD;
 
 
@@ -32,35 +72,99 @@ foreach ($results_subcategory as $result_subcategory) {
   $subcategory_id = $result_subcategory["subcategory_id"];
 
   echo <<<EOD
-    <h3>$name_subcategory</h3>
-    <p>$description_subcategory</p>
+    <article class="frame-around-name-subcategory">
+    <i class="frame1"></i>
+    <h3 class="name-subcategory">$name_subcategory</h3>  
+    <i class="frame2"></i>
+    </article>
+    <p class="description-subcategory">$description_subcategory</p>
     <section class="products">
     EOD;
 
-
-  $statement_product = $pdo->query("select name, price, image_src from data.product
+  $statement_product = $pdo->query("select name, price, image_src, product.product_id, currency from data.product
 left join data.subcategory_to_product on data.product.product_id = subcategory_to_product.product_id where subcategory_id =$subcategory_id");
   $results_product = $statement_product->fetchAll();
   foreach ($results_product as $result_product) {
     $name_product = $result_product["name"];
     $price_product = $result_product["price"];
     $image_src_product = $result_product["image_src"];
+    $product_id = $result_product["product_id"];
+    $currency = $result_product["currency"];
 
     echo <<<EOD
     
-    <article>
-    <h3>$name_product</h3>
-    <img src="$image_src_product"alt"$image_src_product>
-    <b>$price_product</b>
+    <article class="father">
+   <section class="add-to-basket">
+    <a href="#"><img src="$image_src_product"alt"$image_src_product></a>  
+             <h3 class="name-product">$name_product<b class="price-product">$price_product $currency</b></h3>
+</section>
+             <section class="product-buttons add-to-basket">
+                <button class="change-button">
+                <i class="icon pen"></i>
+                    Zmień
+                </button>
+             <a class="add-button" href="?id=0&add=$product_id">
+             <i class="icon plus"></i>
+                 Dodaj
+                </a>
+             <p class="price-product-button">$price_product $currency</p>
+         </section>
     </article>
 EOD;
 
   }
   echo" </section>";
+
 }
 ?>
+<footer>
+       <article class="icons-categories">
+           <a class="frame-around-coupon" href="">
+               <p>
+                   <i class="icon scan-of-a-coupon"></i>
+                   Skanuj
+               </p>
+           </a>
+           <a class="frame-around-screen" href="">
+               <p>
+                   <i class="icon screen"></i>
+                   Ekran
+               </p>
+           </a>
+           <a class="frame-around-close" href="/pages/choose-order-type/index.php">
+               <p>
+                   <i class="icon cancel"></i>
+                   Anuluj
+               </p>
+           </a>
+       </article>
+    <p class="allergy">Masz alergię lub nietolerancję pokarmową? Poinformuj pracownika przy kasie.</p>
+    <section class="wysuwany-koszyk">
+        <details open>
+            <summary>
+                <article class="cos">
+                    <i class="icon bag-basket"></i>
+                    Moje zamówienie
+                </article>
+            </summary>
+            <section class="basket" >
 
-
-
+<?php
+foreach ($_SESSION['basket'] as $basket) {
+    echo $basket."<br>";
+}
+?>
+                <img src="/assets/burgery/big-cassic-bacon.png" alt="/assets/burgery/big-cassic-bacon.png">
+                <p>nazwa</p>
+                <p>cena</p>
+                <a href="#">Do zapłaty  <p>cena</p> </a>
+            </section>
+            <section>
+                <p>Łączna suma</p>
+                <p>W tym VAT 8%</p>
+            </section>
+        </details>
+    </section>
+</footer>
 </body>
 </html>

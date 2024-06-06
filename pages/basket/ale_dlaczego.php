@@ -10,7 +10,7 @@ if (isset($_GET['addOne'])) {
 }
 
 # Tu już mamy normalnie aplikację
-echo "Your session ID: <code>".session_id()."</code>, counter: <code>".$_SESSION['counter']."</code>";
+echo "Your basket ID: <code>".session_id()."</code>, counter: <code>".$_SESSION['counter']."</code>";
 echo <<<EOD
 <nav>
   <ul>

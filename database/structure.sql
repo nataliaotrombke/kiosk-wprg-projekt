@@ -15,6 +15,7 @@ create table data.product (
     name text not null,
     image_src text not null,
     price numeric(5, 2) not null,
+    currency text,
     description text
 );
 
@@ -33,4 +34,5 @@ create table data.subcategory_to_product (
     product_id int references data.product (product_id),
     primary key (subcategory_id, product_id)
 );
+select product_id, name, image_src, price, currency, description from data.product where 
 

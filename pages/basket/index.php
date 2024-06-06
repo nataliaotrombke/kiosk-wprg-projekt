@@ -3,8 +3,7 @@ session_start();
 $_SESSION['basket']??= [];
 //isset -> określa, czy zmienna jest zadeklarowana i jest różna od null
 if (isset($_GET['add'])) {
-//    echo $_GET['add'];
-array_push($_SESSION['basket'], $_GET['add']);
+    array_push($_SESSION['basket'], $_GET['add']);
 }
 
 // 1. jeśli mamy link w postaci ?remove=coś
@@ -20,6 +19,8 @@ if(isset($_GET['remove'])){
 }
 
 echo print_r($_SESSION['basket']);
+echo "Your basket ID: <code>".session_id()."</code>, counter: <code>".$_SESSION['counter']."</code>";
+
 
 ?>
 
