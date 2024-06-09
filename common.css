@@ -1,5 +1,7 @@
 :root {
     --primary-green: rgb(0, 144, 54);
+    --beige: #f2e8df;
+    --white:#f4f4f5;
 }
 
 .icon {
@@ -70,9 +72,14 @@
         padding: 20px 20px 0 40px;
     }
 
+    &.pen-in-basket {
+        background-position-x: -537.204px;
+        background-position-y: -40.679px;
+    }
+
     &.delete {
-        background-position-x: -532.204px;
-        background-position-y: -213.679px;
+        background-position-x: -537.204px;
+        background-position-y: -216.679px;
     }
 }
 

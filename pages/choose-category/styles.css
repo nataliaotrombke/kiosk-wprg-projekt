@@ -53,7 +53,7 @@ body {
 
 .start-button {
     display: block;
-    background-color: #f2e8df;
+    background-color: var(--beige);
     color: black;
     text-align: center;
     font-size: 20px;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose order type</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="category.js"></script>
 </head>
 <body>
 <header>
@@ -138,10 +139,10 @@ EOD;
         </a>
     </article>
     <p class="allergy">Masz alergię lub nietolerancję pokarmową? Poinformuj pracownika przy kasie.</p>
-    <article class="wysuwany-koszyk">
-        <details open>
+    <article class="pull-out-basket">
+        <details id="basket-details">
             <summary>
-                <article class="cos">
+                <article class="grid-bag-basket">
                     <i class="icon bag-basket"></i>
                     Moje zamówienie
                 </article>
@@ -160,12 +161,15 @@ EOD;
                     $product_id = $results_id_product_in_basket["product_id"];
                     $total += $price_product;
                     echo <<<EOD
-                    <img src="$image_src_product" alt="">
-                    <p>$name_product</p>
-                    <p>$price_product</p>
-                    <a class="delete"  href="?id=$category_id&remove=$product_id">
-                      <i class="icon delete"></i>
-                    </a>
+                    <article class="basket-item">
+                        <img src="$image_src_product" alt="">
+                        <p>$name_product</p>
+                        <p>$price_product</p>
+                        <a class="pen-in-basket"><i class="icon pen-in-basket"></i></a>
+                        <a class="delete"  href="?id=$category_id&remove=$product_id">
+                          <i class="icon delete"></i>
+                        </a>
+                    </article>
                     EOD;
                   }
 
