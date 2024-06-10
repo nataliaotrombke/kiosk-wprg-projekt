@@ -176,7 +176,7 @@ EOD;
                   echo <<<EOD
                 </section>
                 <section class="right-side-basket">
-                <a href="#">Do zapłaty <p>$total PLN</p>
+                <a href="/pages/payments/index.php">Do zapłaty <p>$total PLN</p>
                 </a>
                 </section>
                 EOD;
