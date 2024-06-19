@@ -81,6 +81,16 @@
         background-position-x: -537.204px;
         background-position-y: -216.679px;
     }
+
+    &.return-button {
+        background-position-x: -36.204px;
+        background-position-y: 572.321px;
+    }
+    &.confirmation-no{
+        background-position-x: -669.204px;
+        background-position-y: 393.321px;
+    }
+
 }
 
 * {

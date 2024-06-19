@@ -140,6 +140,9 @@ EOD;
     </article>
     <p class="allergy">Masz alergię lub nietolerancję pokarmową? Poinformuj pracownika przy kasie.</p>
     <article class="pull-out-basket">
+      <?php
+if(count($_SESSION['basket']) > 0){
+echo <<<EOD
         <details id="basket-details">
             <summary>
                 <article class="grid-bag-basket">
@@ -149,7 +152,8 @@ EOD;
             </summary>
             <article class="basket">
                 <section class="left-side-basket">
-
+EOD;
+       ?>
                   <?php
                   $total = 0;
                   foreach ($_SESSION['basket'] as $id_product_in_basket) {
@@ -165,7 +169,6 @@ EOD;
                         <img src="$image_src_product" alt="">
                         <p>$name_product</p>
                         <p>$price_product</p>
-                        <a class="pen-in-basket"><i class="icon pen-in-basket"></i></a>
                         <a class="delete"  href="?id=$category_id&remove=$product_id">
                           <i class="icon delete"></i>
                         </a>
@@ -182,11 +185,10 @@ EOD;
                 EOD;
                   ?>
             </article>
-            <section>
-                <p>Łączna suma</p>
-                <p>W tym VAT 8%</p>
-            </section>
         </details>
+  <?php
+}
+  ?>
     </article>
 </footer>
 </body>

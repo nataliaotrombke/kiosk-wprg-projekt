@@ -1,0 +1,57 @@
+@import "/common.css";
+
+.image {
+    width: 100%;
+    height: 28vh;
+}
+
+.grid-bag-basket {
+    display: grid;
+    grid-template-columns: 8% auto;
+    font-size: 22px;
+}
+.insert-card {
+    text-align: center;
+    margin: 300px 0 0 0;
+    font-size: 40px;
+}
+
+.icon-payment {
+    margin: 50px 0 0 120px;
+    height: 260px;
+
+}
+.icon-payment-terminal {
+    height: 260px;
+}
+.instruction{
+    text-align: center;
+}
+
+.mini-info {
+    text-align: center;
+    font-size: 10px;
+    margin: 0 0 300px 0;
+}
+
+article {
+    margin: 0 0 0 250px;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    font-size: 14px;
+}
+
+
+.total {
+    margin: 50px 0 200px 250px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+
+}
+
+footer {
+    margin: 0 0 150px 0;
+}
