@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choose order type</title>
+  <title>Choose category</title>
   <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -11,9 +11,14 @@
 <header>
 
 <?php
+
+// utworzenie połączenia z bazą danych PostgreSQL za pomocą PDO
 $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+
+// wykonanie zapytania do bazy danych, aby pobrać dane kategorii (ID, nazwa, źródło obrazu)
 $statement = $pdo->query("select category_id, name, image_src from data.category");
 
+// pobranie wszystkich wyników zapytania jako tablica asocjacyjna
 $results = $statement->fetchAll();
 
 ?>
@@ -25,8 +30,12 @@ $results = $statement->fetchAll();
     </a>
 
     <?php
-  foreach ($results as $result) {
-    $id = $result["category_id"];
+
+    // iteracja przez wszystkie wyniki zapytania do bazy danych, które zostały pobrane wcześniej
+    foreach ($results as $result) {
+
+      // przypisanie wartości do zmiennych
+      $id = $result["category_id"];
     $name = $result["name"];
     $image = $result["image_src"];
 
@@ -40,8 +49,12 @@ $results = $statement->fetchAll();
 <main class="categories-grid">
 
     <?php
-  foreach ($results as $result) {
-      $id = $result["category_id"];
+
+    // iteracja przez wszystkie wyniki zapytania do bazy danych, które zostały pobrane wcześniej
+    foreach ($results as $result) {
+
+    // przypisanie wartości do zmiennych
+    $id = $result["category_id"];
       $name = $result["name"];
       $image = $result["image_src"];
 

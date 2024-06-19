@@ -1,11 +1,14 @@
 @import "/common.css";
+
 body {
     background-color: var(--white);
 }
+
 .image {
     width: 100%;
     height: 28vh;
 }
+
 .categories-scrollable {
     display: flex;
     column-gap: 5px;
@@ -36,8 +39,8 @@ body {
 .add-to-basket {
     grid-area: 1 / 1
 }
+
 .product-buttons, .add-button {
-    /*height: 64px;*/
     align-self: end;
 }
 
@@ -46,7 +49,7 @@ body {
 }
 
 .name-category {
-    color:  var(--primary-green);
+    color: var(--primary-green);
 
 }
 
@@ -80,6 +83,7 @@ body {
 .description-subcategory {
     font-size: 15px;
 }
+
 .frame-around-name-subcategory {
     display: flex;
     flex-direction: row;
@@ -91,15 +95,15 @@ body {
     align-items: center;
 
     .frame1 {
-        border: solid  var(--primary-green);
-        background-color:  var(--primary-green);
+        border: solid var(--primary-green);
+        background-color: var(--primary-green);
         height: 1px;
         width: 30%;
     }
 
     .frame2 {
-        border: solid  var(--primary-green);
-        background-color:  var(--primary-green);
+        border: solid var(--primary-green);
+        background-color: var(--primary-green);
         height: 1px;
         width: 30%;
     }
@@ -108,7 +112,8 @@ body {
         margin: -10px 0 0 0;
     }
 }
- details > summary {
+
+details > summary {
     padding: 2px 6px;
     cursor: pointer;
     list-style: none;
@@ -128,7 +133,7 @@ body {
     .product-buttons {
         grid-area: 1 / 1;
         display: none;
-        border: solid  var(--primary-green);
+        border: solid var(--primary-green);
         border-radius: 5px;
         grid-template-columns: 1fr 1fr 1fr;
         height: 65px;
@@ -162,7 +167,6 @@ body {
 }
 
 
-
 .icons-categories {
     display: flex;
     flex-direction: row;
@@ -177,7 +181,7 @@ body {
     background-color: var(--white);
 
 
-    .frame-around-screen, .frame-around-coupon, .frame-around-close{
+    .frame-around-screen, .frame-around-coupon, .frame-around-close {
         padding: 10px;
         text-decoration: none;
         color: black;
@@ -191,6 +195,7 @@ body {
         color: red;
     }
 }
+
 .allergy {
     margin: 50px 50px 200px 50px;
     font-size: 10px;
@@ -222,6 +227,7 @@ body {
             margin-left: auto
         }
     }
+
     .pen-in-basket {
         border: solid white;
         background-color: white;
@@ -231,22 +237,15 @@ body {
         place-items: center;
         padding: 5px;
     }
+
     .delete {
         border: solid red;
         background-color: red;
         border-radius: 4px;
         padding: 5px;
-        /*justify-self: center;*/
         display: grid;
         place-items: center;
         margin-outside: auto;
-    }
-
-    .left-side-basket {
-        /*display: grid;*/
-        /*grid-template-columns: 10% 60% 20% 8%;*/
-        /*row-gap: 5px;*/
-
     }
 
     .right-side-basket {

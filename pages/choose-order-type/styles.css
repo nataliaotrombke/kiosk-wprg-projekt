@@ -15,7 +15,7 @@ body {
             height: 100%;
             background-size: cover;
             background-position: center;
-            grid-row: 1 / span 2;
+            grid-row: 1 / span 2; /* ustawienie pozycji w siatce CSS: zaczyna się na pierwszym wierszu i zajmuje 2 wiersze */
             grid-column: 1;
             animation: slideshow 20s infinite;
             background-image: var(--current);
@@ -24,7 +24,7 @@ body {
         .type-buttons {
             display: flex;
             justify-content: center;
-            grid-row: 2 / span 2;
+            grid-row: 2 / span 2; /* ustawienie pozycji w siatce CSS: zaczyna się na drugim wierszu i zajmuje 2 wiersze */
             grid-column: 1;
             gap: 3px;
 
@@ -101,7 +101,10 @@ body {
     }
 }
 
+/* definicja animacji kluczowej o nazwie 'slideshow' */
 @keyframes slideshow {
+
+    /* wartości początkowe i końcowe (0% i 100%) animacji ustawiają zmienną '--current' na obraz */
     0%, 100% {
         --current: url("/assets/hero/spicy-avocado.png");
     }

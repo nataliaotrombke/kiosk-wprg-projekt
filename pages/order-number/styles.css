@@ -1,4 +1,34 @@
+@import "/common.css";
+
 .image {
     width: 100%;
     height: 28vh;
+    margin-bottom: 200px;
+}
+.title {
+    color: var(--primary-green);
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 80px;
+
+}
+
+article {
+    display: grid;
+    place-items: center;
+
+    .numer {
+        text-align: center;
+        font-size: 90px;
+        border: solid black;
+        background-color: black;
+        color: white;
+        padding: 20px 40px;
+        margin-bottom: 60px;
+    }
+}
+
+.info {
+    text-align: center;
+    margin-bottom: 400px;
 }

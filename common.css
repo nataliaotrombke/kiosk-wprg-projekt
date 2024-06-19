@@ -94,7 +94,7 @@
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box; /* resetowanie box-sizing na wszystkich elementach, aby uwzględnić padding i border w obliczeniach szerokości i wysokości */
 }
 
 @font-face {

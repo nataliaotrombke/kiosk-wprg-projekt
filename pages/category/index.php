@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose order type</title>
+    <title>Category</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="category.js"></script>
 </head>
@@ -11,22 +11,37 @@
 <header>
   <?php
   session_start();
+
+  // inicjalizowanie koszyka w sesji, jeśli nie jest ustawiony
   $_SESSION['basket'] ??= [];
+
+  // sprawdzenie, czy zmienna 'add' jest ustawiona w tablicy GET
   //isset -> określa, czy zmienna jest zadeklarowana i jest różna od null
   if (isset($_GET['add'])) {
-//    echo $_GET['add'];
+
+    // dodanie wartości z 'add' do koszyka
     array_push($_SESSION['basket'], $_GET['add']);
   }
+
+  // sprawdzenie, czy zmienna 'remove' jest ustawiona w tablicy GET
   if (isset($_GET['remove'])) {
+
+    // wyszukanie indeksu elementu w koszyku
     $index = array_search($_GET['remove'], $_SESSION['basket']);
+
+    // jeśli element został znaleziony, usunięcie go z koszyka
     if ($index !== false) {
       array_splice($_SESSION['basket'], $index, 1);
     }
   }
 
+  // połączenie z bazą danych PostgreSQL
   $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+
+  // wykonanie zapytania do bazy danych o kategorie
   $statement = $pdo->query("select category_id, name, image_src from data.category");
 
+  // pobranie wszystkich wyników zapytania
   $results = $statement->fetchAll();
 
   ?>
@@ -54,8 +69,10 @@
 //$_GET zmienna w php która trzyma w pamięci wszystko linku po znaku "?" w prawo
 $category_id = $_GET["id"];
 
-
+// połączenie z bazą danych PostgreSQL
 $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+
+// wykonanie zapytania do bazy danych o nazwę kategorii
 $statement_category = $pdo->query("select name from data.category where category_id = $category_id;");
 $result_category = $statement_category->fetch();
 $name_category = $result_category["name"];
@@ -63,9 +80,11 @@ echo <<<EOD
     <h1 class="name-category">$name_category</h1>
 EOD;
 
-
+// wykonanie zapytania do bazy danych o podkategorie danej kategorii
 $statement_subcategory = $pdo->query("select name, description, subcategory_id from data.subcategory where category_id = $category_id;");
 $results_subcategory = $statement_subcategory->fetchAll();
+
+// iteracja przez wszystkie podkategorie
 foreach ($results_subcategory as $result_subcategory) {
   $name_subcategory = $result_subcategory["name"];
   $description_subcategory = $result_subcategory["description"];
@@ -81,9 +100,12 @@ foreach ($results_subcategory as $result_subcategory) {
     <section class="products">
     EOD;
 
+  // wykonanie zapytania do bazy danych o produkty danej podkategorii
   $statement_product = $pdo->query("select name, price, image_src, product.product_id, currency from data.product
 left join data.subcategory_to_product on data.product.product_id = subcategory_to_product.product_id where subcategory_id =$subcategory_id");
   $results_product = $statement_product->fetchAll();
+
+  // iteracja przez wszystkie produkty danej podkategorii
   foreach ($results_product as $result_product) {
     $name_product = $result_product["name"];
     $price_product = $result_product["price"];
@@ -141,8 +163,8 @@ EOD;
     <p class="allergy">Masz alergię lub nietolerancję pokarmową? Poinformuj pracownika przy kasie.</p>
     <article class="pull-out-basket">
       <?php
-if(count($_SESSION['basket']) > 0){
-echo <<<EOD
+      if (count($_SESSION['basket']) > 0){
+      echo <<<EOD
         <details id="basket-details">
             <summary>
                 <article class="grid-bag-basket">
@@ -151,20 +173,31 @@ echo <<<EOD
                 </article>
             </summary>
             <article class="basket">
-                <section class="left-side-basket">
+                <section>
 EOD;
-       ?>
-                  <?php
-                  $total = 0;
-                  foreach ($_SESSION['basket'] as $id_product_in_basket) {
-                    $statement_id_product_in_basket = $pdo->query( "select product_id, name, image_src, price, currency, description from data.product where product_id=$id_product_in_basket");
-                    $results_id_product_in_basket = $statement_id_product_in_basket->fetch();
-                    $name_product = $results_id_product_in_basket["name"];
-                    $price_product = $results_id_product_in_basket["price"];
-                    $image_src_product = $results_id_product_in_basket["image_src"];
-                    $product_id = $results_id_product_in_basket["product_id"];
-                    $total += $price_product;
-                    echo <<<EOD
+      ?>
+      <?php
+
+      // zmienna $total przechowuje sumę cen wszystkich produktów w koszyku
+      $total = 0;
+
+      // iteracja przez wszystkie produkty w koszyku (przechowywane w sesji)
+      foreach ($_SESSION['basket'] as $id_product_in_basket) {
+          // wykonanie zapytania do bazy danych o szczegóły produktu na podstawie jego ID
+        $statement_id_product_in_basket = $pdo->query("select product_id, name, image_src, price, currency, description from data.product where product_id=$id_product_in_basket");
+
+        // pobranie wyników zapytania
+        $results_id_product_in_basket = $statement_id_product_in_basket->fetch();
+
+        // pobranie danych produktu
+        $name_product = $results_id_product_in_basket["name"];
+        $price_product = $results_id_product_in_basket["price"];
+        $image_src_product = $results_id_product_in_basket["image_src"];
+        $product_id = $results_id_product_in_basket["product_id"];
+
+        // dodanie ceny produktu do sumy całkowitej
+        $total += $price_product;
+        echo <<<EOD
                     <article class="basket-item">
                         <img src="$image_src_product" alt="">
                         <p>$name_product</p>
@@ -174,20 +207,20 @@ EOD;
                         </a>
                     </article>
                     EOD;
-                  }
+      }
 
-                  echo <<<EOD
+      echo <<<EOD
                 </section>
                 <section class="right-side-basket">
                 <a href="/pages/payments/index.php">Do zapłaty <p>$total PLN</p>
                 </a>
                 </section>
                 EOD;
-                  ?>
-            </article>
-        </details>
+      ?>
+    </article>
+    </details>
   <?php
-}
+  }
   ?>
     </article>
 </footer>
