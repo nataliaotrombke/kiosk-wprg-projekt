@@ -13,7 +13,7 @@
 <?php
 
 // utworzenie połączenia z bazą danych PostgreSQL za pomocą PDO
-$pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+$pdo = new PDO("pgsql:host=nataliaotrombke.uk;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
 
 // wykonanie zapytania do bazy danych, aby pobrać dane kategorii (ID, nazwa, źródło obrazu)
 $statement = $pdo->query("select category_id, name, image_src from data.category");

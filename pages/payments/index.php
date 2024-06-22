@@ -8,7 +8,7 @@ $_SESSION['basket'] ??= [];
 $basket = $_SESSION['basket'] ?? [];
 
 // utworzenie połączenia z bazą danych PostgreSQL z danymi logowania do użytkownika
-$pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+$pdo = new PDO("pgsql:host=nataliaotrombke.uk;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
 ?>
 <!DOCTYPE html>
 <html lang="en">

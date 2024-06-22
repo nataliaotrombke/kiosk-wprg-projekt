@@ -36,7 +36,7 @@
   }
 
   // połączenie z bazą danych PostgreSQL
-  $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+  $pdo = new PDO("pgsql:host=nataliaotrombke.uk;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
 
   // wykonanie zapytania do bazy danych o kategorie
   $statement = $pdo->query("select category_id, name, image_src from data.category");
@@ -70,7 +70,7 @@
 $category_id = $_GET["id"];
 
 // połączenie z bazą danych PostgreSQL
-$pdo = new PDO("pgsql:host=localhost;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
+$pdo = new PDO("pgsql:host=nataliaotrombke.uk;port=5432;dbname=kiosk;user=natalia;password=g0UWrvv1M8J1M8hNBcTdA3UWj9E2xqupdZ4yj2w4K59dCUqoRx");
 
 // wykonanie zapytania do bazy danych o nazwę kategorii
 $statement_category = $pdo->query("select name from data.category where category_id = $category_id;");
